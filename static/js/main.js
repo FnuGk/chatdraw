@@ -1,8 +1,12 @@
 console.log("Hello");
 
-var app = new Vue({
-	el: "#app",
-	data: {
-		message: "Hello from vue"
-	}
-});
+(function() {
+	const socket = io();
+
+	var app = new Vue({
+		el: "#app",
+		data: {
+			message: "Hello from vue"
+		}
+	});
+})(io, Vue);
