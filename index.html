@@ -21,14 +21,7 @@
 
 		<div class="chat">
 			<chat-area :messages="chatMessages"></chat-area>
-
-			<form @submit="sendMessage" action="#">
-				<div class="input-group chat-input">
-					<input v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message">
-					<!-- </textarea> -->
-					<button class="btn btn-primary" type="submit">Send</button>
-				</div>
-			</form>
+			<chat-send-form :send="sendMessage" v-model="message"></chat-send-form>
 		</div>
 	</div>
 
