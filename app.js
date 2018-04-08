@@ -16,6 +16,11 @@ var chatHistory = [{ msg: "Test message 1" }, { msg: "some other message" }];
 io.on("connection", socket => {
 	console.log("A client connected");
 
+	socket.on("chat-message", msg => {
+		socket.broadcast.emit("chat-message", msg);
+		chatHistory.push(msg);
+	});
+
 	socket.emit("chat-history", chatHistory);
 });
 

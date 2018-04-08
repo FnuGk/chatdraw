@@ -28,8 +28,8 @@
 		</div>
 
 		<div class="input-group chat-input">
-			<textarea class="form-control" aria-label="Message"></textarea>
-			<button class="btn btn-primary" type="submit">Send</button>
+			<textarea v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message"></textarea>
+			<button @click="sendMessage" class="btn btn-primary" type="submit">Send</button>
 		</div>
 	</div>
 
