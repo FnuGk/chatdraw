@@ -1,8 +1,6 @@
 console.log("Hello");
 
 (function() {
-	const socket = io();
-
 	var app = new Vue({
 		el: "#app",
 		data: {
@@ -18,6 +16,8 @@ console.log("Hello");
 			}
 		}
 	});
+
+	const socket = io();
 
 	socket.on("chat-message", message => {
 		app.chatMessages.push(message);
