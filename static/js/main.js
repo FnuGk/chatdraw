@@ -35,11 +35,17 @@ console.log("Hello");
 			chatMessages: []
 		},
 		methods: {
-			sendMessage: () => {
+			sendMessage: function() {
 				const message = { user: app.userName, msg: app.message };
 				app.chatMessages.push(message);
 				socket.emit("chat-message", message);
 				app.message = "";
+
+				this.$nextTick(() => {
+					// TODO: this seems hacky
+					let e = document.getElementById("send-message");
+					e.scrollIntoView();
+				});
 			}
 		}
 	});

@@ -25,9 +25,9 @@
 					<canvas id="game"></canvas>
 				</div>
 
-				<div class="chat col-4">
-					<chat-area :messages="chatMessages"></chat-area>
-					<chat-send-form :send="sendMessage" v-model="message"></chat-send-form>
+				<div id="chat" class="chat col-4">
+					<chat-area class="messages" :messages="chatMessages"></chat-area>
+					<chat-send-form id="send-message" :send="sendMessage" v-model="message"></chat-send-form>
 				</div>
 			</div>
 
