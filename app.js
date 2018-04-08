@@ -24,6 +24,10 @@ io.on("connection", socket => {
 		chatHistory.push(msg);
 	});
 
+	socket.on("draw", point => {
+		socket.broadcast.emit("draw", point);
+	});
+
 	socket.emit("chat-history", chatHistory);
 });
 
