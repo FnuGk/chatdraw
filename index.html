@@ -21,7 +21,9 @@
 
 		<div class="chat-area">
 			<ul class="list-group list-group-flush">
-				<li class="list-group-item">Nothing Here :(</li>
+				<li v-for="chatMessage in chatMessages" class="list-group-item">
+					{{ chatMessage.msg }}
+				</li>
 			</ul>
 		</div>
 

@@ -11,8 +11,12 @@ app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/index.html");
 });
 
+var chatHistory = [{ msg: "Test message 1" }, { msg: "some other message" }];
+
 io.on("connection", socket => {
 	console.log("A client connected");
+
+	socket.emit("chat-history", chatHistory);
 });
 
 http.listen(PORT, () => {

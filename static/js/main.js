@@ -6,7 +6,12 @@ console.log("Hello");
 	var app = new Vue({
 		el: "#app",
 		data: {
-			message: "Hello from vue"
+			message: "Hello from vue",
+			chatMessages: []
 		}
+	});
+
+	socket.on("chat-history", history => {
+		app.chatMessages = history;
 	});
 })(io, Vue);
