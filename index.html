@@ -19,21 +19,17 @@
 <body>
 	<div id="app">
 
-		<div class="chat-area">
-			<ul class="list-group list-group-flush">
-				<li v-for="chatMessage in chatMessages" class="list-group-item">
-					{{ chatMessage.msg }}
-				</li>
-			</ul>
-		</div>
+		<div class="chat">
+			<chat-area :messages="chatMessages"></chat-area>
 
-		<form @submit="sendMessage">
-			<div class="input-group chat-input">
-				<input v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message">
-				<!-- </textarea> -->
-				<button class="btn btn-primary" type="submit">Send</button>
-			</div>
-		</form>
+			<form @submit="sendMessage" action="#">
+				<div class="input-group chat-input">
+					<input v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message">
+					<!-- </textarea> -->
+					<button class="btn btn-primary" type="submit">Send</button>
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
