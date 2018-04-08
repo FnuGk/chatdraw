@@ -11,7 +11,10 @@ app.get("/", (req, res) => {
 	res.sendFile(__dirname + "/index.html");
 });
 
-var chatHistory = [{ msg: "Test message 1" }, { msg: "some other message" }];
+var chatHistory = [
+	{ user: "Player1", msg: "Test message 1" },
+	{ user: "Gamer", msg: "some other message" }
+];
 
 io.on("connection", socket => {
 	console.log("A client connected");

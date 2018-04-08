@@ -7,6 +7,7 @@ console.log("Hello");
 		<div class="chat-area">
 			<ul class="list-group list-group-flush">
 				<li v-for="message in messages" class="list-group-item">
+					<strong>{{ message.user }}</strong>
 					{{ message.msg }}
 				</li>
 			</ul>
@@ -29,12 +30,13 @@ console.log("Hello");
 	var app = new Vue({
 		el: "#app",
 		data: {
+			userName: "me",
 			message: "",
 			chatMessages: []
 		},
 		methods: {
 			sendMessage: () => {
-				const message = { msg: app.message };
+				const message = { user: app.userName, msg: app.message };
 				app.chatMessages.push(message);
 				socket.emit("chat-message", message);
 				app.message = "";
