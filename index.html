@@ -27,10 +27,13 @@
 			</ul>
 		</div>
 
-		<div class="input-group chat-input">
-			<textarea v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message"></textarea>
-			<button @click="sendMessage" class="btn btn-primary" type="submit">Send</button>
-		</div>
+		<form @submit="sendMessage">
+			<div class="input-group chat-input">
+				<input v-model="message" spellcheck="true" autocomplete="off" class="form-control" aria-label="Message">
+				<!-- </textarea> -->
+				<button class="btn btn-primary" type="submit">Send</button>
+			</div>
+		</form>
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
