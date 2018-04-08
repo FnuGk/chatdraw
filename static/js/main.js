@@ -55,55 +55,40 @@ console.log("Hello");
 	});
 
 	(function() {
-		drawCircle = (ctx, color, x, y, size) => {
-			// x -= size;
-			// y -= size * 2;
-
-			ctx.beginPath();
-			ctx.fillStyle = color;
-			ctx.arc(x, y, size, 0, 2 * Math.PI);
-			ctx.fill();
-		};
-
 		const c = document.getElementById("game");
 		c.width = 800; // TODO set these dynamically
 		c.height = 600;
 
-		let lastPos = null;
+		const drawMoveTo = point => {
+			ctx.lineWidth = 10;
+			ctx.lineJoin = ctx.lineCap = "round";
+			ctx.moveTo(point.x, point.y);
+		};
 
-		isDrawing = false;
+		let isDrawing = false;
 		c.onmousedown = e => {
 			isDrawing = true;
-			drawCircle(ctx, "black", e.clientX, e.clientY, 5);
-			socket.emit("draw", { x: e.clientX, y: e.clientY });
+			const point = { x: e.clientX, y: e.clientY };
+			drawMoveTo(point);
+			socket.emit("draw-moveTo", point);
 		};
+		socket.on("draw-moveTo", drawMoveTo);
 		c.onmouseup = () => {
 			isDrawing = false;
-			lastPos = null;
 		};
-		c.onmouseleave = c.onmouseup;
+
+		const drawLineTo = point => {
+			ctx.lineTo(point.x, point.y);
+			ctx.stroke();
+		};
 		c.onmousemove = e => {
 			if (!isDrawing) return;
-			const x = e.clientX;
-			const y = e.clientY;
+			const point = { x: e.clientX, y: e.clientY };
 
-			socket.emit("draw", { x: x, y: y });
-			drawCircle(ctx, "black", x, y, 5);
-
-			// if (lastPos == null) {
-			// drawCircle(ctx, "black", x, y, 5);
-			// } else {
-			// 	console.log(lastPos, x, y);
-			// 	ctx.beginPath();
-			// 	ctx.fillStyle = "black";
-			// 	ctx.moveTo(lastPos.x, lastPos.y);
-			// 	ctx.lineWidth = 15;
-			// 	ctx.lineTo(x, y);
-			// 	ctx.stroke();
-			// }
-
-			lastPos = { x: x, y: y };
+			drawLineTo(point);
+			socket.emit("draw-lineTo", point);
 		};
+		socket.on("draw-lineTo", drawLineTo);
 
 		const ctx = c.getContext("2d");
 

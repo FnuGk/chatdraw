@@ -28,6 +28,14 @@ io.on("connection", socket => {
 		socket.broadcast.emit("draw", point);
 	});
 
+	socket.on("draw-moveTo", point => {
+		socket.broadcast.emit("draw-moveTo", point);
+	});
+
+	socket.on("draw-lineTo", point => {
+		socket.broadcast.emit("draw-lineTo", point);
+	});
+
 	socket.emit("chat-history", chatHistory);
 });
 
